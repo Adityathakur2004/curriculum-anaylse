@@ -238,6 +238,48 @@ export const studentWorkspaceCards = [
   }
 ];
 
+export const loginRoles = [
+  {
+    key: "student",
+    title: "Student Login",
+    purpose: "Track your roadmap, saved options, chatbot guidance and skill-gap progress.",
+    email: "student@edge.app",
+    passwordHint: "Use your campus or personal account",
+    redirect: "/dashboard/student",
+    benefits: [
+      "View career roadmap and decision score",
+      "Access AI learning plans and chat support",
+      "Track projects, micro-internships and progress"
+    ]
+  },
+  {
+    key: "university",
+    title: "University Admin Login",
+    purpose: "Manage curriculum, placement insights, student analytics and academic interventions.",
+    email: "university@edge.app",
+    passwordHint: "Use your institutional admin credentials",
+    redirect: "/dashboard/university",
+    benefits: [
+      "Upload curriculum and placement datasets",
+      "Monitor cohort readiness and skill gaps",
+      "Compare programs against market demand"
+    ]
+  },
+  {
+    key: "admin",
+    title: "Platform Admin Login",
+    purpose: "Oversee onboarding, system health, approvals and global EdGE analytics.",
+    email: "admin@edge.app",
+    passwordHint: "Use your super-admin account",
+    redirect: "/dashboard/admin",
+    benefits: [
+      "Approve universities and manage platform users",
+      "Track usage, growth and AI analysis volume",
+      "Monitor platform-wide quality and operations"
+    ]
+  }
+];
+
 export const skillGapTargets = [
   { skill: "SQL", current: 44, target: 85, action: "2 guided case studies + schema project" },
   { skill: "API Design", current: 39, target: 78, action: "Build REST backend and deploy it" },

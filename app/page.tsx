@@ -7,6 +7,7 @@ import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Impact } from "@/components/sections/impact";
 import { IntelligenceSuite } from "@/components/sections/intelligence-suite";
+import { LoginHub } from "@/components/sections/login-hub";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Analysis />
       <IntelligenceSuite />
       <DecisionEngine />
+      <LoginHub />
       <ChatbotSection />
       <DashboardsPreview />
       <Impact />

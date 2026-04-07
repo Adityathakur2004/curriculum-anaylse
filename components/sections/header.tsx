@@ -19,15 +19,16 @@ export function Header() {
           <a href="#analysis">Gap Analysis</a>
           <a href="#intelligence">Intelligence</a>
           <a href="#decision">Decision Score</a>
+          <a href="#login">Login</a>
           <a href="#chatbot">Chatbot</a>
           <a href="#dashboards">Dashboards</a>
           <a href="#impact">Impact</a>
         </nav>
         <div className="flex items-center gap-3">
-          <Button variant="ghost" href="/dashboard/student">
-            Live Demo
+          <Button variant="ghost" href="/login">
+            Login
           </Button>
-          <Button href="#contact">Book Pilot</Button>
+          <Button href="/dashboard/student">Live Demo</Button>
         </div>
       </div>
     </header>
