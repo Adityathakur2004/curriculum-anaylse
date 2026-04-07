@@ -1,0 +1,19 @@
+import { Analysis } from "@/components/sections/analysis";
+import { DashboardsPreview } from "@/components/sections/dashboards-preview";
+import { Features } from "@/components/sections/features";
+import { Header } from "@/components/sections/header";
+import { Hero } from "@/components/sections/hero";
+import { Impact } from "@/components/sections/impact";
+
+export default function HomePage() {
+  return (
+    <main className="pb-16">
+      <Header />
+      <Hero />
+      <Features />
+      <Analysis />
+      <DashboardsPreview />
+      <Impact />
+    </main>
+  );
+}
