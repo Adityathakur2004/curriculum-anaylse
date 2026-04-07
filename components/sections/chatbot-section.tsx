@@ -11,6 +11,14 @@ type ChatMessage = {
   content: string;
 };
 
+type ChatApiResponse = {
+  message?: string;
+  error?: string;
+  model?: string;
+  mode?: "live" | "fallback";
+  warning?: string;
+};
+
 const initialMessages: ChatMessage[] = [
   {
     role: "assistant",
@@ -24,6 +32,8 @@ export function ChatbotSection() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [chatMode, setChatMode] = useState<"live" | "fallback">("fallback");
+  const [chatWarning, setChatWarning] = useState("");
 
   async function sendMessage(prompt?: string) {
     const content = (prompt ?? input).trim();
@@ -47,12 +57,14 @@ export function ChatbotSection() {
         body: JSON.stringify({ messages: nextMessages })
       });
 
-      const data = (await response.json()) as { message?: string; error?: string };
+      const data = (await response.json()) as ChatApiResponse;
 
       if (!response.ok || !data.message) {
         throw new Error(data.error || "Unable to get a response right now.");
       }
 
+      setChatMode(data.mode || "fallback");
+      setChatWarning(data.warning || "");
       setMessages((current) => [...current, { role: "assistant", content: data.message as string }]);
     } catch (requestError) {
       setError(
@@ -116,12 +128,36 @@ export function ChatbotSection() {
               </div>
               <div>
                 <p className="font-semibold">EdGE AI Assistant</p>
-                <p className="text-sm text-muted-foreground">Free-model powered guidance</p>
+                <p className="text-sm text-muted-foreground">
+                  {chatMode === "live" ? "Live AI guidance" : "Smart offline guidance"}
+                </p>
               </div>
+            </div>
+            <div
+              className={
+                chatMode === "live"
+                  ? "rounded-full bg-success/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-success"
+                  : "rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary"
+              }
+            >
+              {chatMode === "live" ? "Live" : "Fallback"}
             </div>
           </div>
 
           <div className="flex-1 space-y-4 overflow-y-auto px-6 py-6">
+            {chatMode === "fallback" ? (
+              <div className="rounded-[24px] border border-primary/20 bg-primary/5 px-5 py-4 text-sm leading-7 text-muted-foreground">
+                The chatbot is using built-in EdGE guidance right now. Add `OPENROUTER_API_KEY` in
+                `.env.local` if you want live AI model responses.
+              </div>
+            ) : null}
+
+            {chatWarning ? (
+              <div className="rounded-[24px] border border-danger/20 bg-danger/5 px-5 py-4 text-sm leading-7 text-danger">
+                {chatWarning}
+              </div>
+            ) : null}
+
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
