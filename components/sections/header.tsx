@@ -14,9 +14,11 @@ export function Header() {
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Education to industry</p>
           </div>
         </div>
-        <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
           <a href="#features">Features</a>
           <a href="#analysis">Gap Analysis</a>
+          <a href="#intelligence">Intelligence</a>
+          <a href="#decision">Decision Score</a>
           <a href="#chatbot">Chatbot</a>
           <a href="#dashboards">Dashboards</a>
           <a href="#impact">Impact</a>
