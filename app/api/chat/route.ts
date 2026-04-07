@@ -8,18 +8,30 @@ type ChatMessage = {
   content: string;
 };
 
+function getDemoResponse(prompt: string) {
+  const normalized = prompt.toLowerCase();
+
+  if (normalized.includes("sql") || normalized.includes("backend")) {
+    return `Demo mode: A good 4-week plan is 1) SQL basics and joins, 2) schema design and indexing, 3) build a REST API with CRUD, 4) deploy a small backend project. Pair this with one placement-style project like a student analytics dashboard. Add OPENROUTER_API_KEY for live AI responses.`;
+  }
+
+  if (normalized.includes("data analyst") || normalized.includes("analytics")) {
+    return `Demo mode: For a data analyst path, focus on Excel, SQL, Power BI/Tableau, and one portfolio project using real business data. Strong communication and dashboard storytelling are as important as tools. Add OPENROUTER_API_KEY for live AI responses.`;
+  }
+
+  if (normalized.includes("resume")) {
+    return `Demo mode: Keep your resume one page, lead with projects, quantify outcomes, and match keywords to the role you want. For software roles, highlight stack, deployment, and collaboration; for analytics roles, highlight SQL, dashboards, and business impact. Add OPENROUTER_API_KEY for live AI responses.`;
+  }
+
+  if (normalized.includes("career") || normalized.includes("roadmap")) {
+    return `Demo mode: Choose one target role first, compare your current skills with role expectations, then commit to a 6- to 8-week roadmap with projects, mock interviews, and measurable milestones. Add OPENROUTER_API_KEY for live AI responses.`;
+  }
+
+  return `Demo mode: EdGE AI can help with curriculum gaps, project ideas, placement prep, career planning, and learning paths. Add OPENROUTER_API_KEY in .env.local to switch from demo responses to a live free AI model through OpenRouter.`;
+}
+
 export async function POST(request: Request) {
   const apiKey = process.env.OPENROUTER_API_KEY;
-
-  if (!apiKey) {
-    return NextResponse.json(
-      {
-        error:
-          "Missing OPENROUTER_API_KEY. Add it to your environment before using the chatbot."
-      },
-      { status: 500 }
-    );
-  }
 
   try {
     const body = (await request.json()) as { messages?: ChatMessage[] };
@@ -27,6 +39,15 @@ export async function POST(request: Request) {
 
     if (!incomingMessages.length) {
       return NextResponse.json({ error: "At least one message is required." }, { status: 400 });
+    }
+
+    const latestUserMessage = [...incomingMessages].reverse().find((message) => message.role === "user");
+
+    if (!apiKey) {
+      return NextResponse.json({
+        message: getDemoResponse(latestUserMessage?.content || ""),
+        model: "demo-fallback"
+      });
     }
 
     const messages = [
