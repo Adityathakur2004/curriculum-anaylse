@@ -56,3 +56,10 @@ export const dashboards = {
     ]
   }
 };
+
+export const starterPrompts = [
+  "Compare my B.Tech CSE curriculum with entry-level software engineer roles.",
+  "Create a 4-week learning path for improving SQL and backend skills.",
+  "Which projects should I build to close the gap for data analyst roles?",
+  "Explain the biggest placement-readiness gaps for Tier 2 engineering students."
+];

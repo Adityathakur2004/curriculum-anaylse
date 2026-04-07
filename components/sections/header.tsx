@@ -17,6 +17,7 @@ export function Header() {
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
           <a href="#features">Features</a>
           <a href="#analysis">Gap Analysis</a>
+          <a href="#chatbot">Chatbot</a>
           <a href="#dashboards">Dashboards</a>
           <a href="#impact">Impact</a>
         </nav>

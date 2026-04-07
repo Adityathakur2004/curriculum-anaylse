@@ -1,4 +1,5 @@
 import { Analysis } from "@/components/sections/analysis";
+import { ChatbotSection } from "@/components/sections/chatbot-section";
 import { DashboardsPreview } from "@/components/sections/dashboards-preview";
 import { Features } from "@/components/sections/features";
 import { Header } from "@/components/sections/header";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <Features />
       <Analysis />
+      <ChatbotSection />
       <DashboardsPreview />
       <Impact />
     </main>
