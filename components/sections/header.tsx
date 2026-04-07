@@ -20,6 +20,7 @@ export function Header() {
           <a href="#intelligence">Intelligence</a>
           <a href="#decision">Decision Score</a>
           <a href="#login">Login</a>
+          <a href="/dashboard/market">Market</a>
           <a href="#chatbot">Chatbot</a>
           <a href="#dashboards">Dashboards</a>
           <a href="#impact">Impact</a>
